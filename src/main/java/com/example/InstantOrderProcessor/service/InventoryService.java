@@ -3,12 +3,16 @@ package com.example.InstantOrderProcessor.service;
 import com.example.InstantOrderProcessor.dao.OrderDao;
 import com.example.InstantOrderProcessor.dto.EventOrderDto;
 import com.example.InstantOrderProcessor.entity.Order;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service
+@Slf4j
 public class InventoryService {
 
     @Autowired
@@ -31,7 +35,7 @@ public class InventoryService {
         }
         catch(Exception e)
          {
-             // todo- complete catch block later
+             log.error("error while handeling the order {}, {}",e, Arrays.asList(e.getStackTrace()));
          }
     }
 
